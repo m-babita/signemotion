@@ -40,7 +40,7 @@ class WelcomeScreen extends StatelessWidget {
             CustomizedBtn(
               btnTxt: "Register",
               btnColor: Colors.purple[100],
-              txtColor: Colors.purple[300],
+              txtColor: Colors.purple[200],
               onPressed: () {},
             ),
             const SizedBox(
