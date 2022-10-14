@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.purple[400],
       ),
-      home: MySplash(),
+      home: const MySplash(),
     );
   }
 }

@@ -17,17 +17,19 @@ class Classifier {
     tensorImage = imageProcessor.process(tensorImage);
 
     TensorBuffer probabilityBuffer =
-        TensorBuffer.createFixedSize(<int>[1, 127], TfLiteType.float32);
+        TensorBuffer.createFixedSize(<int>[1, 4], TfLiteType.float32);
 
     try {
       Interpreter interpreter =
           await Interpreter.fromAsset('model_emotion.tflite');
       interpreter.run(tensorImage.buffer, probabilityBuffer.buffer);
+      print(probabilityBuffer);
     } catch (e) {
-      print("Error loading");
+      print(e);
     }
 
-    List<String> labels = await FileUtil.loadLabels('assets/elables.txt');
+    List<String> labels = await FileUtil.loadLabels('assets/elabels.txt');
+
     SequentialProcessor<TensorBuffer> probabilityProcessor =
         TensorProcessorBuilder().build();
     TensorLabel tensorLabel = TensorLabel.fromList(
@@ -43,7 +45,7 @@ class Classifier {
         eType = Type;
       }
     });
-
+    print(labeledProb);
     var outputProb = highestProb.toStringAsFixed(1);
     return [eType, outputProb];
   }

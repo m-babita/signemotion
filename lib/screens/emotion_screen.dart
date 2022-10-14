@@ -1,5 +1,5 @@
 import 'dart:io';
-// import 'package:signemotion/dl_model/classifier.dart';
+import 'package:signemotion/dl_model/classifier.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -12,11 +12,13 @@ class EmotionScreen extends StatefulWidget {
 
 class _EmotionScreenState extends State<EmotionScreen> {
   bool _loading = true;
+
+  final Classifier classifier = Classifier();
   late File _image;
-  // final Classifier classifier = Classifier();
+
+  final picker = ImagePicker();
   late String eType = 'Happy';
   late String Prob = '70%';
-  final picker = ImagePicker();
 
   Future pickImage() async {
     final image = await picker.pickImage(
@@ -25,15 +27,14 @@ class _EmotionScreenState extends State<EmotionScreen> {
       maxWidth: 300,
       imageQuality: 100,
     );
-    // final outputs = await classifier.classifyImage(image!);
+    final outputs = await classifier.classifyImage(image);
     if (image == null) return;
-    final tempimage = File(image.path);
 
     setState(() {
-      _image = tempimage;
+      _image = File(image.path);
       _loading = false;
-      // eType = outputs[0];
-      // Prob = outputs[1];
+      eType = outputs[0];
+      Prob = outputs[1];
     });
   }
 
@@ -44,17 +45,16 @@ class _EmotionScreenState extends State<EmotionScreen> {
       maxWidth: 300,
       imageQuality: 100,
     );
-    // final outputs = await classifier.classifyImage(image!);
+    final outputs = await classifier.classifyImage(image);
 
     if (image == null) return;
-    final tempimage = File(image.path);
 
     setState(() {
-      _image = tempimage;
+      _image = File(image.path);
       _loading = false;
 
-      // eType = outputs[0];
-      // Prob = outputs[1];
+      eType = outputs[0];
+      Prob = outputs[1];
     });
   }
 
@@ -103,7 +103,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.file(
                                   _image,
-                                  fit: BoxFit.contain,
+                                  fit: BoxFit.cover,
                                 ),
                               )),
                           SizedBox(
@@ -117,7 +117,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
                             ),
                           ),
                           Text(
-                            eType == '' ? '' : '$eType $Prob',
+                            eType == '' ? '' : '$Prob $eType',
                             style: TextStyle(
                               color: Colors.purpleAccent,
                               fontSize: 20,
