@@ -3,18 +3,18 @@ import 'package:signemotion/dl_model/eclassifier.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EmotionScreen extends StatefulWidget {
-  const EmotionScreen({Key? key}) : super(key: key);
+class SingnScreen extends StatefulWidget {
+  const SingnScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmotionScreen> createState() => _EmotionScreenState();
+  State<SingnScreen> createState() => _SingnScreenState();
 }
 
-class _EmotionScreenState extends State<EmotionScreen> {
+class _SingnScreenState extends State<SingnScreen> {
   bool _loading = true;
 
   final Classifier classifier = Classifier();
-  late File _image;
+  File? _image;
 
   final picker = ImagePicker();
   late String emotionType = 'Happy';
@@ -27,8 +27,9 @@ class _EmotionScreenState extends State<EmotionScreen> {
       maxWidth: 300,
       imageQuality: 100,
     );
-    final outputs = await classifier.classifyImage(image);
+
     if (image == null) return;
+    final outputs = await classifier.classifyImage(image);
 
     setState(() {
       _image = File(image.path);
@@ -45,9 +46,9 @@ class _EmotionScreenState extends State<EmotionScreen> {
       maxWidth: 300,
       imageQuality: 100,
     );
-    final outputs = await classifier.classifyImage(image);
 
     if (image == null) return;
+    final outputs = await classifier.classifyImage(image);
 
     setState(() {
       _image = File(image.path);
@@ -73,7 +74,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
                 height: 50,
               ),
               const Text(
-                "How are you feeling?",
+                "What signs can you make?",
                 style: TextStyle(
                   fontSize: 22,
                   color: Colors.purple,
@@ -82,13 +83,13 @@ class _EmotionScreenState extends State<EmotionScreen> {
               const SizedBox(
                 height: 30,
               ),
-              _loading
+              _image == null
                   ? Column(
                       children: [
                         Container(
-                          height: 300,
+                          height: 280,
                           child: const Image(
-                            image: AssetImage("assets/emotions.png"),
+                            image: AssetImage("assets/signs.png"),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -97,12 +98,12 @@ class _EmotionScreenState extends State<EmotionScreen> {
                   : Column(
                       children: [
                         SizedBox(
-                            height: 300,
-                            width: 300,
+                            height: 280,
+                            width: 280,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: Image.file(
-                                _image,
+                                _image!,
                                 fit: BoxFit.cover,
                               ),
                             )),

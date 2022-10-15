@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signemotion/screens/home_screen.dart';
+import 'package:signemotion/screens/welcomeScreen.dart';
 
 class MySplash extends StatefulWidget {
   const MySplash({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _MySplashState extends State<MySplash> {
   toOnboard() async {
     await Future.delayed(Duration(milliseconds: 1500), () {});
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => HomeScreen()));
+        context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
   }
 
   @override

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:signemotion/screens/home_screen.dart';
 import 'package:signemotion/screens/login_screen.dart';
+import 'package:signemotion/screens/register_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -39,18 +41,28 @@ class WelcomeScreen extends StatelessWidget {
             ),
             CustomizedBtn(
               btnTxt: "Register",
-              btnColor: Colors.purple[100],
-              txtColor: Colors.purple[200],
-              onPressed: () {},
+              btnColor: Colors.purple[200],
+              txtColor: Colors.white,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const ResgisterScreen()));
+              },
             ),
             const SizedBox(
               height: 10,
             ),
             Padding(
               padding: EdgeInsets.all(10),
-              child: Text(
-                "Continue as a Guest",
-                style: TextStyle(fontSize: 18, color: Colors.purple),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                },
+                child: Text("Continue as a Guest >",
+                    style: TextStyle(
+                      color: Colors.purple[400],
+                      fontSize: 18,
+                    )),
               ),
             ),
           ],

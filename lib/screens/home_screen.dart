@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:signemotion/screens/ecarousel_screen.dart';
 import 'package:signemotion/screens/emotion_screen.dart';
+import 'package:signemotion/screens/scarousel_screen.dart';
+import 'package:signemotion/screens/sign_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,16 +18,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Signs Emotions"),
+          title: const Text("Signs Emotions"),
           backgroundColor: Colors.purple[200],
         ),
         body: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 200,
                 child: Image(
                   image: AssetImage("assets/emotions.png"),
@@ -37,13 +40,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 txtColor: Colors.white,
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => EmotionScreen()));
+                      MaterialPageRoute(builder: (_) => const ECarousel()));
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 150,
                 child: Image(
                   image: AssetImage("assets/signs.png"),
@@ -54,7 +57,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 btnColor: Colors.purple[200],
                 btnTxt: "Gestures",
                 txtColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const SCarousel()));
+                },
               )
             ],
           ),

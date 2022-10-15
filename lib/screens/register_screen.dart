@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:signemotion/screens/home_screen.dart';
-import 'package:signemotion/screens/register_screen.dart';
+import 'package:signemotion/screens/login_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 import 'package:signemotion/widgets/customizedTxtfield.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class ResgisterScreen extends StatefulWidget {
+  const ResgisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ResgisterScreen> createState() => _ResgisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ResgisterScreenState extends State<ResgisterScreen> {
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
   TextEditingController _passController = TextEditingController();
 
   @override
@@ -30,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Padding(
                 padding: EdgeInsets.all(30),
                 child: Text(
-                  "Welcome Back!",
+                  "Get Started!",
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 )),
             const SizedBox(
@@ -42,6 +43,11 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             CustomizedTextfield(
+              myController: _nameController,
+              hintText: "Enter your name",
+              isPass: false,
+            ),
+            CustomizedTextfield(
               myController: _emailController,
               hintText: "Enter your email",
               isPass: false,
@@ -51,68 +57,17 @@ class _LoginScreenState extends State<LoginScreen> {
               hintText: "Enter your password",
               isPass: true,
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {},
-                child: Text("Forgot Password?",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                    )),
-              ),
+            SizedBox(
+              height: 10,
             ),
             CustomizedBtn(
-              btnTxt: "Login",
+              btnTxt: "Register",
               btnColor: Colors.purple[300],
               txtColor: Colors.white,
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => HomeScreen()));
               },
-            ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    color: Colors.grey,
-                  ),
-                  Text(
-                    "or Login with",
-                    style: TextStyle(fontSize: 14, color: Colors.black54),
-                  ),
-                  Container(
-                    height: 1,
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    color: Colors.grey,
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  height: 50,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.purple, width: 1),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: IconButton(
-                      icon: Icon(
-                        FontAwesomeIcons.google,
-                        color: Colors.purple,
-                      ),
-                      onPressed: () {}),
-                ),
-              ],
             ),
             SizedBox(
               height: 10,
@@ -121,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 70),
               child: Row(
                 children: [
-                  Text("Don't have an account?",
+                  Text("Already have an account?",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,
@@ -131,9 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => const ResgisterScreen()));
+                              builder: (_) => const LoginScreen()));
                     },
-                    child: Text("Register Now",
+                    child: Text("Login Now",
                         style: TextStyle(
                           color: Colors.purple[400],
                           fontSize: 15,
