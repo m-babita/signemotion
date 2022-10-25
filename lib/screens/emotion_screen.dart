@@ -2,6 +2,9 @@ import 'dart:io';
 import 'package:signemotion/dl_model/eclassifier.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
+import 'package:signemotion/dl_model/eclassifier_quant.dart';
+import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
 class EmotionScreen extends StatefulWidget {
   const EmotionScreen({Key? key}) : super(key: key);
@@ -13,12 +16,23 @@ class EmotionScreen extends StatefulWidget {
 class _EmotionScreenState extends State<EmotionScreen> {
   bool _loading = true;
 
-  final Classifier classifier = Classifier();
+  late Classifier classifier;
   late File _image;
 
   final picker = ImagePicker();
-  late String emotionType = 'Happy';
-  late String probab = '70%';
+
+  Image? _imageWidget;
+  img.Image? fox;
+  Category? category;
+  // late String emotionType = 'Happy';
+  // late String probab = '70%';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    classifier = ClassifierQuant();
+  }
 
   Future pickImage() async {
     var image = await picker.pickImage(
@@ -27,14 +41,12 @@ class _EmotionScreenState extends State<EmotionScreen> {
       maxWidth: 300,
       imageQuality: 100,
     );
-    final outputs = await classifier.classifyImage(image);
-    if (image == null) return;
 
     setState(() {
-      _image = File(image.path);
+      _image = File(image!.path);
+      _imageWidget = Image.file(_image);
       _loading = false;
-      emotionType = outputs[0];
-      probab = outputs[1];
+      _predict();
     });
   }
 
@@ -45,16 +57,21 @@ class _EmotionScreenState extends State<EmotionScreen> {
       maxWidth: 300,
       imageQuality: 100,
     );
-    final outputs = await classifier.classifyImage(image);
-
-    if (image == null) return;
 
     setState(() {
-      _image = File(image.path);
+      _image = File(image!.path);
+      _imageWidget = Image.file(_image);
       _loading = false;
+      _predict();
+    });
+  }
 
-      emotionType = outputs[0];
-      probab = outputs[1];
+  void _predict() async {
+    img.Image imageInput = img.decodeImage(_image.readAsBytesSync())!;
+    var pred = classifier.predict(imageInput);
+
+    setState(() {
+      category = pred;
     });
   }
 
@@ -101,10 +118,11 @@ class _EmotionScreenState extends State<EmotionScreen> {
                             width: 300,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.file(
-                                _image,
-                                fit: BoxFit.cover,
-                              ),
+                              child: _imageWidget,
+                              // child: Image.file(
+                              //   _image,
+                              //   fit: BoxFit.cover,
+                              // ),
                             )),
                         const SizedBox(
                           height: 30,
@@ -117,9 +135,11 @@ class _EmotionScreenState extends State<EmotionScreen> {
                           ),
                         ),
                         Text(
-                          emotionType == '' ? '' : '$probab $emotionType',
+                          category != null
+                              ? '${category!.label} ${category!.score.toStringAsFixed(3)}'
+                              : '',
                           style: const TextStyle(
-                            color: Colors.purpleAccent,
+                            color: Colors.purple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),

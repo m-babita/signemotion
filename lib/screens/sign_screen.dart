@@ -1,7 +1,9 @@
 import 'dart:io';
-import 'package:signemotion/dl_model/eclassifier.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:image/image.dart' as img;
+import 'package:signemotion/dl_model/sclassifier_quant.dart';
+import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
 class SingnScreen extends StatefulWidget {
   const SingnScreen({Key? key}) : super(key: key);
@@ -13,12 +15,23 @@ class SingnScreen extends StatefulWidget {
 class _SingnScreenState extends State<SingnScreen> {
   bool _loading = true;
 
-  final Classifier classifier = Classifier();
-  File? _image;
+  late ClassifierSQuant classifier;
+  late File _image;
 
   final picker = ImagePicker();
-  late String emotionType = 'Happy';
-  late String probab = '70%';
+
+  Image? _imageWidget;
+  img.Image? fox;
+  Category? category;
+  // late String emotionType = 'Happy';
+  // late String probab = '70%';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    classifier = ClassifierSQuant();
+  }
 
   Future pickImage() async {
     var image = await picker.pickImage(
@@ -28,14 +41,11 @@ class _SingnScreenState extends State<SingnScreen> {
       imageQuality: 100,
     );
 
-    if (image == null) return;
-    final outputs = await classifier.classifyImage(image);
-
     setState(() {
-      _image = File(image.path);
+      _image = File(image!.path);
+      _imageWidget = Image.file(_image);
       _loading = false;
-      emotionType = outputs[0];
-      probab = outputs[1];
+      _predict();
     });
   }
 
@@ -47,15 +57,20 @@ class _SingnScreenState extends State<SingnScreen> {
       imageQuality: 100,
     );
 
-    if (image == null) return;
-    final outputs = await classifier.classifyImage(image);
+    setState(() {
+      _image = File(image!.path);
+      _imageWidget = Image.file(_image);
+      _loading = false;
+      _predict();
+    });
+  }
+
+  void _predict() async {
+    img.Image imageInput = img.decodeImage(_image.readAsBytesSync())!;
+    var pred = classifier.predict(imageInput);
 
     setState(() {
-      _image = File(image.path);
-      _loading = false;
-
-      emotionType = outputs[0];
-      probab = outputs[1];
+      category = pred;
     });
   }
 
@@ -83,11 +98,11 @@ class _SingnScreenState extends State<SingnScreen> {
               const SizedBox(
                 height: 30,
               ),
-              _image == null
+              _loading
                   ? Column(
                       children: [
                         Container(
-                          height: 280,
+                          height: 300,
                           child: const Image(
                             image: AssetImage("assets/signs.png"),
                             fit: BoxFit.cover,
@@ -98,14 +113,15 @@ class _SingnScreenState extends State<SingnScreen> {
                   : Column(
                       children: [
                         SizedBox(
-                            height: 280,
-                            width: 280,
+                            height: 300,
+                            width: 300,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
-                              child: Image.file(
-                                _image!,
-                                fit: BoxFit.cover,
-                              ),
+                              child: _imageWidget,
+                              // child: Image.file(
+                              //   _image,
+                              //   fit: BoxFit.cover,
+                              // ),
                             )),
                         const SizedBox(
                           height: 30,
@@ -118,9 +134,11 @@ class _SingnScreenState extends State<SingnScreen> {
                           ),
                         ),
                         Text(
-                          emotionType == '' ? '' : '$probab $emotionType',
+                          category != null
+                              ? '${category!.label} ${category!.score.toStringAsFixed(3)}'
+                              : '',
                           style: const TextStyle(
-                            color: Colors.purpleAccent,
+                            color: Colors.purple,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
