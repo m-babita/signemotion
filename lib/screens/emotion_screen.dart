@@ -7,6 +7,7 @@ import 'package:signemotion/dl_model/eclassifier_quant.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
 class EmotionScreen extends StatefulWidget {
+  static String routeName = '/emotion';
   const EmotionScreen({Key? key}) : super(key: key);
 
   @override
@@ -128,7 +129,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
                           height: 30,
                         ),
                         const Text(
-                          'Pridictions',
+                          'Predictions',
                           style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,

@@ -42,10 +42,21 @@ dependencies:
         url: https://github.com/elephantum/tflite_flutter_helper.git
         ref: a7d7a59a33f7cffa0a2a12ab05625807622cc97a
   tflite_flutter: ^0.9.0
+  firebase_core: ^2.1.1
+  firebase_auth: ^4.1.1
+  provider: ^6.0.2
+  google_sign_in: ^5.4.0
+  cloud_firestore: ^4.0.4
+  flutter_launcher_icons: ^0.10.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/eslogo.png" 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

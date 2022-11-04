@@ -4,6 +4,7 @@ import 'package:signemotion/screens/emotion_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class ECarousel extends StatefulWidget {
+  static String routeName = '/ecarousel';
   const ECarousel({super.key});
 
   @override
@@ -66,8 +67,7 @@ class _ECarouselState extends State<ECarousel> {
                 btnTxt: "Try it Yourself",
                 txtColor: Colors.white,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const EmotionScreen()));
+                  Navigator.pushNamed(context, EmotionScreen.routeName);
                 },
               )
             ],

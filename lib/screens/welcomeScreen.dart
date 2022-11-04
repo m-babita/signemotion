@@ -5,6 +5,7 @@ import 'package:signemotion/screens/register_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static String routeName = '/welcome';
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,8 +36,7 @@ class WelcomeScreen extends StatelessWidget {
               btnColor: Colors.purple[300],
               txtColor: Colors.white,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const LoginScreen()));
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
               },
             ),
             CustomizedBtn(
@@ -44,8 +44,8 @@ class WelcomeScreen extends StatelessWidget {
               btnColor: Colors.purple[200],
               txtColor: Colors.white,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const ResgisterScreen()));
+                Navigator.pushReplacementNamed(
+                    context, ResgisterScreen.routeName);
               },
             ),
             const SizedBox(
@@ -55,8 +55,7 @@ class WelcomeScreen extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
                 },
                 child: Text("Continue as a Guest >",
                     style: TextStyle(

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "958180968049",
+    "project_id": "signemotion",
+    "storage_bucket": "signemotion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958180968049:android:c97c5aaada72662f2d7dd0",
+        "android_client_info": {
+          "package_name": "com.example.signemotion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "958180968049-6bvgd9i1ndnest50daupd4nai9ctpqac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7HczzY2ekCuZBaCTZrvb9qICARcF_Nm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "958180968049-6bvgd9i1ndnest50daupd4nai9ctpqac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

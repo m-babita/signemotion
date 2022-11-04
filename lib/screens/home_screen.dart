@@ -6,6 +6,7 @@ import 'package:signemotion/screens/sign_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class HomeScreen extends StatefulWidget {
+  static String routeName = '/home';
   HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -39,9 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 btnTxt: "Emotions",
                 txtColor: Colors.white,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const ECarousel()));
-                },
+                  Navigator.pushNamed(context, ECarousel.routeName);
+                 },
               ),
               const SizedBox(
                 height: 20,
@@ -58,8 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 btnTxt: "Gestures",
                 txtColor: Colors.white,
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const SCarousel()));
+                  Navigator.pushNamed(context, SCarousel.routeName);
                 },
               )
             ],

@@ -5,6 +5,7 @@ import 'package:signemotion/screens/sign_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class SCarousel extends StatefulWidget {
+  static String routeName = '/scarousel';
   const SCarousel({super.key});
 
   @override
@@ -66,10 +67,7 @@ class _SCarouselState extends State<SCarousel> {
                 btnColor: Colors.purple[200],
                 btnTxt: "Try it Yourself",
                 txtColor: Colors.white,
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const SingnScreen()));
-                },
+                onPressed: () {Navigator.pushNamed(context, SingnScreen.routeName);},
               )
             ],
           ),

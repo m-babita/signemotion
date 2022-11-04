@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:signemotion/screens/forgot_password.dart';
 import 'package:signemotion/screens/home_screen.dart';
 import 'package:signemotion/screens/register_screen.dart';
+import 'package:signemotion/services/firebase_auth_methods.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 import 'package:signemotion/widgets/customizedTxtfield.dart';
 
 class LoginScreen extends StatefulWidget {
+  static String routeName = '/login';
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,6 +19,18 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+
+  googleSignin() async {
+    context.read<FirebaseAuthMethods>().signInWithGoogle(context);
+  }
+
+  loginUser() {
+    context.read<FirebaseAuthMethods>().loginWithEmail(
+          email: _emailController.text,
+          password: _passController.text,
+          context: context,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,23 +70,21 @@ class _LoginScreenState extends State<LoginScreen> {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, ForgotPassword.routeName);
+                },
                 child: Text("Forgot Password?",
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.purple[200],
                       fontSize: 15,
                     )),
               ),
             ),
             CustomizedBtn(
-              btnTxt: "Login",
-              btnColor: Colors.purple[300],
-              txtColor: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => HomeScreen()));
-              },
-            ),
+                btnTxt: "Login",
+                btnColor: Colors.purple[300],
+                txtColor: Colors.white,
+                onPressed: loginUser),
             Padding(
               padding: EdgeInsets.all(10),
               child: Row(
@@ -110,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         FontAwesomeIcons.google,
                         color: Colors.purple,
                       ),
-                      onPressed: () {}),
+                      onPressed: googleSignin),
                 ),
               ],
             ),
@@ -128,10 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const ResgisterScreen()));
+                      Navigator.pushNamed(context, ResgisterScreen.routeName);
                     },
                     child: Text("Register Now",
                         style: TextStyle(

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:signemotion/screens/home_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:signemotion/screens/login_screen.dart';
+import 'package:signemotion/services/firebase_auth_methods.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 import 'package:signemotion/widgets/customizedTxtfield.dart';
 
 class ResgisterScreen extends StatefulWidget {
+  static String routeName = '/register';
   const ResgisterScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +18,15 @@ class _ResgisterScreenState extends State<ResgisterScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
   TextEditingController _passController = TextEditingController();
+
+  void signUpUser() async {
+    context.read<FirebaseAuthMethods>().signUpWithEmail(
+          name: _nameController.text,
+          email: _emailController.text,
+          password: _passController.text,
+          context: context,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +72,10 @@ class _ResgisterScreenState extends State<ResgisterScreen> {
               height: 10,
             ),
             CustomizedBtn(
-              btnTxt: "Register",
-              btnColor: Colors.purple[300],
-              txtColor: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => HomeScreen()));
-              },
-            ),
+                btnTxt: "Register",
+                btnColor: Colors.purple[300],
+                txtColor: Colors.white,
+                onPressed: signUpUser),
             SizedBox(
               height: 10,
             ),
@@ -83,11 +90,7 @@ class _ResgisterScreenState extends State<ResgisterScreen> {
                       )),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const LoginScreen()));
-                    },
+                      Navigator.pushNamed(context, LoginScreen.routeName);},
                     child: Text("Login Now",
                         style: TextStyle(
                           color: Colors.purple[400],

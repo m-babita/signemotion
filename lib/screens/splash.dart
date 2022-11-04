@@ -3,6 +3,7 @@ import 'package:signemotion/screens/home_screen.dart';
 import 'package:signemotion/screens/welcomeScreen.dart';
 
 class MySplash extends StatefulWidget {
+  static String routeName = '/splash';
   const MySplash({Key? key}) : super(key: key);
 
   @override
@@ -19,8 +20,7 @@ class _MySplashState extends State<MySplash> {
 
   toOnboard() async {
     await Future.delayed(Duration(milliseconds: 1500), () {});
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => WelcomeScreen()));
+    Navigator.pushReplacementNamed(context, WelcomeScreen.routeName);
   }
 
   @override

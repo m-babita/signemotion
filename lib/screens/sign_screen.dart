@@ -6,6 +6,7 @@ import 'package:signemotion/dl_model/sclassifier_quant.dart';
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
 class SingnScreen extends StatefulWidget {
+  static String routeName = '/signs';
   const SingnScreen({Key? key}) : super(key: key);
 
   @override
@@ -89,7 +90,7 @@ class _SingnScreenState extends State<SingnScreen> {
                 height: 50,
               ),
               const Text(
-                "What signs can you make?",
+                "What gestures can you make?",
                 style: TextStyle(
                   fontSize: 22,
                   color: Colors.purple,
