@@ -110,7 +110,7 @@ abstract class Classifier {
 MapEntry<String, double> getTopProbability(Map<String, double> labeledProb) {
   var pq = PriorityQueue<MapEntry<String, double>>(compare);
   pq.addAll(labeledProb.entries);
-
+  print(labeledProb.entries);
   return (pq.first);
 }
 
