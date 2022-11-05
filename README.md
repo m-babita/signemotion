@@ -1,10 +1,7 @@
-## signemotion
+# signemotion
 
-A Flutter project.
+A Flutter project,with google teachable Image Processing for emotions and gesture detection.
 
-with google teachable Image Processing for emotions and gesture detection.
-# Emotion Recognition Demo
-![Emotions Recognition - Animated gif demo](assets/emotions.gif)
-
-# Gesture Recognition Demo
-![Gestures Recognition - Animated gif demo](assets/gestures.gif)
+|Emotion Recognition Demo|Gesture Recognition Demo|
+|:---:|:---:|
+|<img src="assets/emotions.gif" width="300" alt="Emotions Recognition - Animated gif demo" />|<img src="assets/gestures.gif" width="300" alt="Emotions Recognition - Animated gif demo" />|
