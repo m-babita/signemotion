@@ -24,8 +24,7 @@ class _SingnScreenState extends State<SingnScreen> {
   Image? _imageWidget;
   img.Image? fox;
   Category? category;
-  // late String emotionType = 'Happy';
-  // late String probab = '70%';
+  late num score;
 
   @override
   void initState() {
@@ -72,6 +71,7 @@ class _SingnScreenState extends State<SingnScreen> {
 
     setState(() {
       category = pred;
+      score = category!.score * 10000;
     });
   }
 
@@ -119,10 +119,6 @@ class _SingnScreenState extends State<SingnScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: _imageWidget,
-                              // child: Image.file(
-                              //   _image,
-                              //   fit: BoxFit.cover,
-                              // ),
                             )),
                         const SizedBox(
                           height: 30,
@@ -136,7 +132,7 @@ class _SingnScreenState extends State<SingnScreen> {
                         ),
                         Text(
                           category != null
-                              ? '${category!.label} ${category!.score.toStringAsFixed(3)}'
+                              ? '${category!.label} ${score.toStringAsFixed(2)}%'
                               : '',
                           style: const TextStyle(
                             color: Colors.purple,

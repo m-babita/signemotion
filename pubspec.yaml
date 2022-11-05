@@ -49,14 +49,17 @@ dependencies:
   cloud_firestore: ^4.0.4
   flutter_launcher_icons: ^0.10.0
 
+flutter_icons:
+  android: true
+  ios: true
+  web: true
+  image_path: "assets/eslogo.png"
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "assets/eslogo.png" 
+ 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

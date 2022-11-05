@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:signemotion/screens/home_screen.dart';
-import 'package:signemotion/screens/register_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:signemotion/services/firebase_auth_methods.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 import 'package:signemotion/widgets/customizedTxtfield.dart';
 
@@ -15,7 +14,12 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  resetWithEmail() {
+    context.read<FirebaseAuthMethods>().resetPassword(
+          email: _emailController.text,
+          context: context,
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +65,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               btnTxt: "Send Code",
               btnColor: Colors.purple[300],
               txtColor: Colors.white,
-              onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.routeName);
-              },
+              onPressed: resetWithEmail,
             ),
           ],
         ),

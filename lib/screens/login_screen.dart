@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:signemotion/screens/forgot_password.dart';
-import 'package:signemotion/screens/home_screen.dart';
 import 'package:signemotion/screens/register_screen.dart';
 import 'package:signemotion/services/firebase_auth_methods.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';

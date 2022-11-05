@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:signemotion/screens/home_screen.dart';
-import 'package:signemotion/screens/welcomeScreen.dart';
+import 'package:signemotion/screens/welcome_screen.dart';
 
 class MySplash extends StatefulWidget {
   static String routeName = '/splash';

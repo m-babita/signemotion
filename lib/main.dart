@@ -12,7 +12,7 @@ import 'package:signemotion/screens/register_screen.dart';
 import 'package:signemotion/screens/scarousel_screen.dart';
 import 'package:signemotion/screens/sign_screen.dart';
 import 'package:signemotion/screens/splash.dart';
-import 'package:signemotion/screens/welcomeScreen.dart';
+import 'package:signemotion/screens/welcome_screen.dart';
 import 'package:signemotion/services/firebase_auth_methods.dart';
 
 Future<void> main() async {

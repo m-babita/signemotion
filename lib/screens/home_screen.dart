@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:signemotion/screens/ecarousel_screen.dart';
-import 'package:signemotion/screens/emotion_screen.dart';
 import 'package:signemotion/screens/scarousel_screen.dart';
-import 'package:signemotion/screens/sign_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 
 class HomeScreen extends StatefulWidget {

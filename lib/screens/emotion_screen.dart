@@ -25,8 +25,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
   Image? _imageWidget;
   img.Image? fox;
   Category? category;
-  // late String emotionType = 'Happy';
-  // late String probab = '70%';
+  late num score;
 
   @override
   void initState() {
@@ -73,6 +72,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
 
     setState(() {
       category = pred;
+      score = category!.score * 10000;
     });
   }
 
@@ -120,10 +120,6 @@ class _EmotionScreenState extends State<EmotionScreen> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20),
                               child: _imageWidget,
-                              // child: Image.file(
-                              //   _image,
-                              //   fit: BoxFit.cover,
-                              // ),
                             )),
                         const SizedBox(
                           height: 30,
@@ -137,7 +133,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
                         ),
                         Text(
                           category != null
-                              ? '${category!.label} ${category!.score.toStringAsFixed(3)}'
+                              ? '${category!.label} ${score.toStringAsFixed(2)}%'
                               : '',
                           style: const TextStyle(
                             color: Colors.purple,

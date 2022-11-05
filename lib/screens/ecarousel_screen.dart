@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:signemotion/dl_model/carousalModel.dart';
+import 'package:signemotion/dl_model/carousal_model.dart';
 import 'package:signemotion/screens/emotion_screen.dart';
 import 'package:signemotion/widgets/customizedBtn.dart';
 

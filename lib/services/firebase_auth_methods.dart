@@ -30,8 +30,7 @@ class FirebaseAuthMethods {
           email: email, password: password);
       User? user = username.user;
       user!.updateDisplayName(name);
-      await sendEmailVerification(context)
-          .then((value) => {postDetailsToFirestore(name, email)})
+      await postDetailsToFirestore(name, email)
           .then((value) =>
               Navigator.pushReplacementNamed(context, HomeScreen.routeName));
 
@@ -52,22 +51,9 @@ class FirebaseAuthMethods {
   }) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      if (!_auth.currentUser!.emailVerified) {
-        await sendEmailVerification(context).then((value) =>
-            Navigator.pushReplacementNamed(context, HomeScreen.routeName));
-      }
+      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
-    }
-  }
-
-//email verification
-  Future<void> sendEmailVerification(BuildContext context) async {
-    try {
-      _auth.currentUser!.sendEmailVerification();
-      showSnackBar(context, 'Email verification sent!');
-    } on FirebaseAuthException catch (e) {
-      showSnackBar(context, e.message!); // Display error message
     }
   }
 
