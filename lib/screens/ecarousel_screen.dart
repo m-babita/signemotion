@@ -37,40 +37,42 @@ class _ECarouselState extends State<ECarousel> {
         appBar: AppBar(
           backgroundColor: Colors.purple[200],
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(vertical: 40),
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(40),
-                child: Text(
-                  "Basic Emotions",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child: Column(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(40),
+                  child: Text(
+                    "Basic Emotions",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
                   ),
                 ),
-              ),
-              AspectRatio(
-                aspectRatio: 1,
-                child: PageView.builder(
-                  itemCount: eList.length,
-                  physics: ClampingScrollPhysics(),
-                  controller: _pageController,
-                  itemBuilder: (context, index) {
-                    return customView(index);
-                  },
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: PageView.builder(
+                    itemCount: eList.length,
+                    physics: const ClampingScrollPhysics(),
+                    controller: _pageController,
+                    itemBuilder: (context, index) {
+                      return customView(index);
+                    },
+                  ),
                 ),
-              ),
-              CustomizedBtn(
-                btnColor: Colors.purple[200],
-                btnTxt: "Try it Yourself",
-                txtColor: Colors.white,
-                onPressed: () {
-                  Navigator.pushNamed(context, EmotionScreen.routeName);
-                },
-              )
-            ],
+                CustomizedBtn(
+                  btnColor: Colors.purple[200],
+                  btnTxt: "Try it Yourself",
+                  txtColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, EmotionScreen.routeName);
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -87,7 +89,7 @@ Widget customCard(DataModel data) {
     children: [
       Expanded(
         child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.purple[50],
@@ -97,7 +99,7 @@ Widget customCard(DataModel data) {
                       data.imageName,
                     ),
                     fit: BoxFit.fill),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, 4),
                       blurRadius: 4,

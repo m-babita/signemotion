@@ -72,7 +72,7 @@ class _EmotionScreenState extends State<EmotionScreen> {
 
     setState(() {
       category = pred;
-      score = category!.score * 10000;
+      score = category!.score * 70000;
     });
   }
 
@@ -84,125 +84,127 @@ class _EmotionScreenState extends State<EmotionScreen> {
           backgroundColor: Colors.purple[200],
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              const Text(
-                "How are you feeling?",
-                style: TextStyle(
-                  fontSize: 22,
-                  color: Colors.purple,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              _loading
-                  ? Column(
-                      children: [
-                        Container(
-                          height: 300,
-                          child: const Image(
-                            image: AssetImage("assets/emotions.png"),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        SizedBox(
+                const Text(
+                  "How are you feeling?",
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.purple,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                _loading
+                    ? Column(
+                        children: [
+                          Container(
                             height: 300,
-                            width: 300,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: _imageWidget,
-                            )),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        const Text(
-                          'Predictions',
-                          style: TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
+                            child: const Image(
+                              image: AssetImage("assets/emotions.png"),
+                              fit: BoxFit.cover,
+                            ),
                           ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          SizedBox(
+                              height: 300,
+                              width: 300,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: _imageWidget,
+                              )),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          const Text(
+                            'Predictions',
+                            style: TextStyle(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            category != null
+                                ? '${category!.label} ${score.toStringAsFixed(2)}%'
+                                : '',
+                            style: const TextStyle(
+                              color: Colors.purple,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: Colors.white,
+                              fixedSize: const Size(60, 60),
+                              shadowColor: Colors.pink[100]),
+                          onPressed: pickImage,
+                          child: Icon(Icons.photo_camera,
+                              size: 30, color: Colors.purple[300]),
+                        ),
+                        const SizedBox(
+                          height: 10,
                         ),
                         Text(
-                          category != null
-                              ? '${category!.label} ${score.toStringAsFixed(2)}%'
-                              : '',
-                          style: const TextStyle(
-                            color: Colors.purple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          'Camera',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.purple[400],
+                              fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.white,
-                            fixedSize: const Size(60, 60),
-                            shadowColor: Colors.pink[100]),
-                        onPressed: pickImage,
-                        child: Icon(Icons.photo_camera,
-                            size: 30, color: Colors.purple[300]),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Camera',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.purple[400],
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    width: 60,
-                  ),
-                  Column(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.white,
-                            fixedSize: const Size(60, 60),
-                            shadowColor: Colors.pink[100]),
-                        onPressed: pickGalleryImage,
-                        child: Icon(Icons.photo,
-                            size: 30, color: Colors.purple[300]),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Gallery',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.purple[400],
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(
+                      width: 60,
+                    ),
+                    Column(
+                      children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              shape: const CircleBorder(),
+                              backgroundColor: Colors.white,
+                              fixedSize: const Size(60, 60),
+                              shadowColor: Colors.pink[100]),
+                          onPressed: pickGalleryImage,
+                          child: Icon(Icons.photo,
+                              size: 30, color: Colors.purple[300]),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Gallery',
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.purple[400],
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

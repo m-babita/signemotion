@@ -18,7 +18,7 @@ class _MySplashState extends State<MySplash> {
   }
 
   toOnboard() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {});
+    await Future.delayed(const Duration(milliseconds: 1500), () {});
     Navigator.pushReplacementNamed(context, WelcomeScreen.routeName);
   }
 

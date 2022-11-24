@@ -21,45 +21,47 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: Colors.purple[200],
         ),
         body: Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 50,
-              ),
-              const SizedBox(
-                height: 200,
-                child: Image(
-                  image: AssetImage("assets/emotions.png"),
-                  fit: BoxFit.contain,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-              CustomizedBtn(
-                btnColor: Colors.purple[200],
-                btnTxt: "Emotions",
-                txtColor: Colors.white,
-                onPressed: () {
-                  Navigator.pushNamed(context, ECarousel.routeName);
-                 },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 150,
-                child: Image(
-                  image: AssetImage("assets/signs.png"),
-                  fit: BoxFit.contain,
+                const SizedBox(
+                  height: 200,
+                  child: Image(
+                    image: AssetImage("assets/emotions.png"),
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-              CustomizedBtn(
-                btnColor: Colors.purple[200],
-                btnTxt: "Gestures",
-                txtColor: Colors.white,
-                onPressed: () {
-                  Navigator.pushNamed(context, SCarousel.routeName);
-                },
-              )
-            ],
+                CustomizedBtn(
+                  btnColor: Colors.purple[200],
+                  btnTxt: "Emotions",
+                  txtColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, ECarousel.routeName);
+                   },
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const SizedBox(
+                  height: 150,
+                  child: Image(
+                    image: AssetImage("assets/signs.png"),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                CustomizedBtn(
+                  btnColor: Colors.purple[200],
+                  btnTxt: "Gestures",
+                  txtColor: Colors.white,
+                  onPressed: () {
+                    Navigator.pushNamed(context, SCarousel.routeName);
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

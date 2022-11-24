@@ -14,9 +14,9 @@ class ResgisterScreen extends StatefulWidget {
 }
 
 class _ResgisterScreenState extends State<ResgisterScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
 
   void signUpUser() async {
     context.read<FirebaseAuthMethods>().signUpWithEmail(
@@ -38,7 +38,7 @@ class _ResgisterScreenState extends State<ResgisterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
                 padding: EdgeInsets.all(30),
                 child: Text(
                   "Get Started!",
@@ -67,7 +67,7 @@ class _ResgisterScreenState extends State<ResgisterScreen> {
               hintText: "Enter your password",
               isPass: true,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             CustomizedBtn(
@@ -75,14 +75,14 @@ class _ResgisterScreenState extends State<ResgisterScreen> {
                 btnColor: Colors.purple[300],
                 txtColor: Colors.white,
                 onPressed: signUpUser),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70),
               child: Row(
                 children: [
-                  Text("Already have an account?",
+                  const Text("Already have an account?",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,

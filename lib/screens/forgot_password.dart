@@ -40,13 +40,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 fit: BoxFit.contain,
               ),
             ),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.all(10),
                 child: Text(
                   "Forgot Password?",
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 )),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 30,
               ),

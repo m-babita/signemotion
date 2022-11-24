@@ -16,8 +16,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passController = TextEditingController();
 
   googleSignin() async {
     context.read<FirebaseAuthMethods>().signInWithGoogle(context);
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Padding(
+            const Padding(
                 padding: EdgeInsets.all(30),
                 child: Text(
                   "Welcome Back!",
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 txtColor: Colors.white,
                 onPressed: loginUser),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: MediaQuery.of(context).size.width * 0.3,
                     color: Colors.grey,
                   ),
-                  Text(
+                  const Text(
                     "or Login with",
                     style: TextStyle(fontSize: 14, color: Colors.black54),
                   ),
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: Border.all(color: Colors.purple, width: 1),
                       borderRadius: BorderRadius.circular(10)),
                   child: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         FontAwesomeIcons.google,
                         color: Colors.purple,
                       ),
@@ -127,14 +127,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 70),
               child: Row(
                 children: [
-                  Text("Don't have an account?",
+                  const Text("Don't have an account?",
                       style: TextStyle(
                         color: Colors.grey,
                         fontSize: 15,

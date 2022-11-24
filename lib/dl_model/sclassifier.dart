@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'dart:math';
 import 'package:collection/collection.dart';
